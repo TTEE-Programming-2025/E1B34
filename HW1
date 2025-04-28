@@ -1,0 +1,95 @@
+// =============================================
+// 作業 1
+// 班級：E1B
+// 座號：34
+// 姓名：周紘慶倴
+// =============================================
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+// 顯示自定畫面（至少20行） 
+void drawWelcomeScreen() {
+    for (int i = 1; i <= 20; i++) {
+        printf("這是你的畫面第%d行，歡迎使用\n", i);
+    }
+    system("PAUSE");  // 𤊄暫停畫面 
+    system("CLS");    // ラ消除畫面 
+}
+
+// 密碼檢查（正確為2024） 
+int passwordCheck() {
+    char input[10];
+    const char password[] = "2024";
+
+    printf("請輸入4位數密碼");
+    scanf("%s", input);
+    fflush(stdin);  // ラ清空緩衝區�^
+
+    if (strcmp(input, password) == 0) {
+        printf("密碼正確\n");
+        return 1;
+    } else {
+        printf("%c", '\a');  // 發出警告聲 
+        printf("密碼錯誤\n");
+        return 0;
+    }
+}
+
+// 顯示選單 
+void displayMainMenu() {
+    char ch;
+    printf("請輸入一個字元");
+    scanf(" %c", &ch);
+    fflush(stdin);
+
+    if (isupper(ch)) {
+        printf("Uppercase\n");
+    } else if (islower(ch)) {
+        printf("Lowercase\n");
+    } else if (isdigit(ch)) {
+        printf("Digit\n");
+    } else {
+        printf("Your name:周紘慶\n");
+    }
+
+    system("PAUSE");
+    system("CLS");
+}
+
+// 再次輸入一字元 
+void characterCategory() {
+    char ch;
+    printf("請再輸入一個字元");
+    scanf(" %c", &ch);
+    fflush(stdin);
+
+    if (ch >= 'A' && ch <= 'Z') {
+        printf("Uppercase\n");
+    } else if (ch >= 'a' && ch <= 'z') {
+        printf("Lowercase\n");
+    } else if (ch >= '0' && ch <= '9') {
+        printf("Digit\n");
+    } else {
+        printf("班級：E1B34 座號：34 姓名：周紘慶\n");
+    }
+
+    system("PAUSE");
+}
+
+// 主程式 
+int main() {
+    
+    drawWelcomeScreen();
+
+    if (!passwordCheck()) {
+        return 0;
+    }
+
+    displayMainMenu();
+    characterCategory();
+
+    return 0;
+}
